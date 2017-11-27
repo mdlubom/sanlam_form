@@ -1,0 +1,142 @@
+$(document).ready(function(){
+
+    $('#entry_form').on('submit', function(e){
+
+        // prevent the form from submitting
+        e.preventDefault();
+
+        // form data
+        form_data = $(this).serializeArray();
+
+        // remove all the errors
+        $('.form_error').each(function(){
+            $(this).removeClass('form_error');
+        });
+
+        $('.btnSubmit').hide();
+
+        $.ajax({
+            url: sanlam.template_url + '/classes/class.db.php',
+            type: "POST",
+            data: form_data,
+            dataType: 'JSON',
+            success: function( data ){
+
+                console.log( data );
+
+                if( data.status == false ) {
+
+                    // this means that the form has been
+                    //$('#entry_form').after('<p>Thank you, your submission has been received.</p><p>Should you have any questions or queries email us on <a class="mailto" href="mailto:InstitutionalInsights@sanlaminvestments.com?subject=Institutional Insights event 20 September 2017 query">InstitutionalInsights@sanlaminvestments.com</a>.</p>');
+
+                    $('.showmelater').show();
+
+                    $('#entry_form').remove();
+                    $('p.remove').remove();
+                    $('div.remove').remove();
+
+                } else {
+
+                    // show the buton again
+                    $('.btnSubmit').show();
+
+                    // there are errors
+                    error_length = data.errors.length - 1;
+
+                    for( i=0; i<=error_length; i++ ) {
+
+                        // check for normao=l input errors
+                        $('#'+data.errors[i]).addClass('form_error');
+
+                        // check for dropdown errors
+                        if( data.errors[i] == 'se_title_required' || data.errors[i] == 'se_dietary_type_required' || data.errors[i] == 'se_designation_required' || data.errors[i] == 'se_cpd_certificate_required ' || data.errors[i] == 'se_company_position_required' ) {
+
+                            // add an error to this custom dropdown
+                            $('div[data-target="'+data.errors[i]+'"]').addClass('form_error');
+
+                        }
+                    }
+
+                }
+
+            },
+            error: function( data ){
+
+                console.log( data );
+
+            }
+        });
+
+    });
+
+    // limit input characters on telephone
+    $('#se_cell_number_required, #se_cell_number_required').on('input', function(){
+
+       // only show numbers
+       new_value = $(this).val().replace(/[^\d\.\-]/g,'');
+
+       $(this).val( new_value );
+
+       cell_length = $(this).val().length;
+
+       if( cell_length > 10 ) {
+           new_cell = $(this).val().substring(0,10);
+           $(this).val(new_cell);
+       }
+
+
+    });
+
+    // show dropdown
+    $('.form_drop').on('click', function(){
+
+        $(this).toggleClass('active');
+
+    });
+
+    // drop down click
+    $('.form_drop ul li a').click(function(e){
+
+        if( !$(this).hasClass('mailto') ) {
+
+            e.preventDefault();
+
+            data_value = $(this).data('value');
+
+            // set the span
+            $(this).parent('li').parent('ul').parent('div').children('span.title').html($(this).html());
+
+            // set the drop down
+            target_ul = $(this).parent('li').parent('ul').parent('div').data('target');
+
+            $('#' + target_ul).val( data_value );
+
+            // also check if it needs to show the other
+            if( data_value == 'other' ) {
+
+                // check if you need to show or hide the other box
+                $('.other_'+target_ul).addClass('other_active');
+
+            } else {
+
+                // hide the other incase it has already shown
+                $('.other_'+target_ul).children('input').val('');
+                $('.other_'+target_ul).removeClass('other_active');
+
+            }
+
+        }
+
+    });
+
+    // hide the dropdowns on off click
+    $('body').on(function(){
+
+        // hide the dropdowns
+        $('.form_drop').each(function(){
+            $(this).removeClass('active');
+        })
+
+    })
+
+});

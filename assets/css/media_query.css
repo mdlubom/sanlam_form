@@ -1,0 +1,116 @@
+/* Mobile */
+@media screen and (max-width: 768px){
+	.head_image{
+		background-size: cover;
+	    background-repeat: no-repeat;
+	    max-height: 150px;
+	    background-position: 25%;
+	}
+	.header_nav a {
+		padding-top: 20px;
+	    color: #0072CB;
+	    text-align: center;
+	    padding-left: 35px;
+	    float: left;
+	    font-size: 12px;
+	    padding-left: 20px;
+	}
+	.header_nav img {
+	    float: left;
+	    padding-left: 20px;
+	    zoom: 75%;
+	}
+	.book_and_bar {
+    	padding: 10px 20px;
+	}
+	book,input, .side_bar,.inputs,.book,.copyright,.connect,.container{
+		width: 100%;
+		padding: 0 auto;
+	}
+	.book span h1 {
+    	font-size: 25px;
+    	margin: 0 0 15px 0;
+    	line-height: 22px;
+	}
+	.book {
+    	padding-right: 0px;
+	}
+	.side_bar {
+		width: 100%;
+    	padding: 20px;
+    	box-sizing: border-box;
+	}
+	.btn_submit {
+        font-size: 10px;
+	    width: 100px;
+    	padding: 10px;
+	    margin: 10px 0;
+	    margin-left: 35%;
+	}
+	.Footer_and_connect {
+	    padding: 20px 25px;
+	    font-size: 13px;
+	    line-height: 15px;
+	}
+	.connect p {
+    	padding-top: 30px;
+	}
+	.icon {
+	    max-width: 40px;
+	    max-height: 40px;
+	    margin-right: 10px;
+	}
+}
+@media screen and (min-width: 516px){
+	.header_nav a {
+	  	padding-top: 20px;
+	    float: right;
+	    padding-right: 20px;
+	}
+}
+@media screen and (min-width: 769px) and (max-width: 1279px){
+	.header_nav a {
+    	padding-top: 30px;
+	}
+	.head_image {
+	    max-height: 300px;
+	    margin-bottom: 15px;
+	    background-position: 30%;
+	    zoom: 90%;
+	}
+	.book_and_bar {
+	    padding: 30px 40px;
+	}
+	.book {
+		width: 65%;
+	    padding-right: 30px;
+	}
+	.side_bar {
+	    width: 35%;
+	    padding: 20px;
+	}
+	.inputs{
+		width: 100%
+	}
+	.btn_submit {
+	    font-size: 12px;
+	    width: 120px;
+	    padding: 13px;
+	}
+	.Footer_and_connect {
+    	padding: 25px 40px;
+	}
+	.copyright {
+    	width: 75%;
+	}
+	.connect {
+    	width: 25%;
+	}
+	.icon {
+	    max-width: 45px;
+	    max-height: 45px;
+	}
+	.icons .icon{
+		margin-bottom: 5px;
+	}
+}
